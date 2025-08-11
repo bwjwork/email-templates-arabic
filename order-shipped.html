@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم شحن طلبك</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Tahoma, sans-serif;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            direction: rtl;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 35px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,20 50,50 T100,50 L100,100 L0,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+        }
+        .logo {
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .status-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .status-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.1) 20px,
+                rgba(255,255,255,0.1) 40px
+            );
+        }
+        .status-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .content {
+            padding: 40px 30px;
+            background: #ffffff;
+        }
+        .shipping-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            position: relative;
+        }
+        .shipping-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #34d399, #10b981);
+            z-index: -1;
+        }
+        .order-title {
+            color: #1e3a8a;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .order-subtitle {
+            color: #10b981;
+            font-size: 18px;
+            margin: 0 0 30px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+        .order-details {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-right: 4px solid #10b981;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .detail-value {
+            color: #1f2937;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .tracking-section {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 30px 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .tracking-title {
+            color: #065f46;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+        }
+        .tracking-number {
+            background: #ffffff;
+            color: #1f2937;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin: 15px 0;
+            border: 2px dashed #10b981;
+            display: inline-block;
+        }
+        .tracking-text {
+            color: #065f46;
+            font-size: 14px;
+            margin: 15px 0 0 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+        }
+        .delivery-timeline {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .timeline-title {
+            color: #1e3a8a;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 20px 0;
+            text-align: center;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px 0;
+        }
+        .timeline-icon {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        .timeline-icon.pending {
+            background: #d1d5db;
+        }
+        .timeline-text {
+            color: #4b5563;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .timeline-text.completed {
+            color: #065f46;
+            font-weight: 600;
+        }
+        .footer {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        .preheader {
+            display: none;
+            visibility: hidden;
+            mso-hide: all;
+            opacity: 0;
+            color: transparent;
+            height: 0;
+            width: 0;
+            overflow: hidden;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            .content {
+                padding: 25px 20px;
+            }
+            .order-details, .tracking-section, .delivery-timeline {
+                padding: 20px;
+            }
+            .order-title {
+                font-size: 28px;
+            }
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <span class="preheader">تم شحن طلبك بنجاح! تتبع شحنتك الآن برقم التتبع المرفق</span>
+    
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 20px 0;">
+        <tr>
+            <td align="center">
+                <div class="email-container">
+                    <!-- Header -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="header">
+                                <h1 class="logo">📦 شركتنا</h1>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Status Banner -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="status-banner">
+                                <p class="status-text">✅ تم شحن طلبك بنجاح</p>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Content -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="content">
+                                <div class="shipping-icon">🚚</div>
+                                <h2 class="order-title">طلبك في الطريق إليك!</h2>
+                                <p class="order-subtitle">تم شحن طلبك وسيصل قريباً</p>
+                                
+                                <!-- Order Details -->
+                                <div class="order-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">رقم الطلب:</span>
+                                        <span class="detail-value">#ORD-2024-001234</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">تاريخ الطلب:</span>
+                                        <span class="detail-value">15 ديسمبر 2024</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">تاريخ الشحن:</span>
+                                        <span class="detail-value">17 ديسمبر 2024</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">التوصيل المتوقع:</span>
+                                        <span class="detail-value">19-20 ديسمبر 2024</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">شركة الشحن:</span>
+                                        <span class="detail-value">الشحن السريع</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Tracking Section -->
+                                <div class="tracking-section">
+                                    <h3 class="tracking-title">🔍 تتبع شحنتك</h3>
+                                    <div class="tracking-number">TRK-789456123</div>
+                                    <p class="tracking-text">استخدم هذا الرقم لتتبع شحنتك في أي وقت</p>
+                                    <a href="#" class="cta-button">تتبع شحنتك الآن</a>
+                                </div>
+                                
+                                <!-- Delivery Timeline -->
+                                <div class="delivery-timeline">
+                                    <h3 class="timeline-title">مراحل التوصيل</h3>
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">✓</div>
+                                        <div class="timeline-text completed">تم تأكيد الطلب</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">✓</div>
+                                        <div class="timeline-text completed">تم تحضير الطلب</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">✓</div>
+                                        <div class="timeline-text completed">تم شحن الطلب</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon pending">⏳</div>
+                                        <div class="timeline-text">في الطريق للتوصيل</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon pending">📍</div>
+                                        <div class="timeline-text">تم التوصيل</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Footer -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="footer">
+                                <p><strong>© 2024 شركتنا</strong> - جميع الحقوق محفوظة</p>
+                                <p>إذا كان لديك أي استفسار حول طلبك، لا تتردد في التواصل معنا</p>
+                                <p>إذا كنت لا ترغب في تلقي هذه الرسائل، <a href="#">يمكنك إلغاء الاشتراك من هنا</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+

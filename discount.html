@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض خصم مميز</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Tahoma, sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%);
+            direction: rtl;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="0,0 100,0 80,100 0,100" fill="rgba(255,255,255,0.05)"/></svg>');
+        }
+        .logo {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .discount-banner {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .discount-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+        @keyframes slide {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(50px); }
+        }
+        .discount-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .content {
+            padding: 50px 30px;
+            text-align: center;
+            background: #ffffff;
+        }
+        .discount-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            position: relative;
+        }
+        .discount-circle::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            z-index: -1;
+        }
+        .discount-percentage {
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .discount-off {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .offer-title {
+            color: #1e3a8a;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+        .offer-subtitle {
+            color: #dc2626;
+            font-size: 20px;
+            margin: 0 0 30px 0;
+            font-weight: 600;
+        }
+        .offer-text {
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0 0 40px 0;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 20px 50px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
+        }
+        .urgency {
+            background: #fef3c7;
+            padding: 25px 30px;
+            text-align: center;
+            border-top: 3px solid #fbbf24;
+        }
+        .urgency-title {
+            color: #92400e;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .countdown-item {
+            background: #ffffff;
+            padding: 15px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 60px;
+        }
+        .countdown-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            display: block;
+        }
+        .countdown-label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .footer {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        .preheader {
+            display: none;
+            visibility: hidden;
+            mso-hide: all;
+            opacity: 0;
+            color: transparent;
+            height: 0;
+            width: 0;
+            overflow: hidden;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            .content {
+                padding: 30px 20px;
+            }
+            .offer-title {
+                font-size: 28px;
+            }
+            .countdown {
+                gap: 10px;
+            }
+            .countdown-item {
+                min-width: 50px;
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <span class="preheader">عرض خاص لفترة محدودة! خصم 35% على جميع المنتجات - لا تفوت الفرصة</span>
+    
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%); padding: 20px 0;">
+        <tr>
+            <td align="center">
+                <div class="email-container">
+                    <!-- Header -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="header">
+                                <h1 class="logo">🌟 شركتنا</h1>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Discount Banner -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="discount-banner">
+                                <p class="discount-text">🔥 عرض خاص لفترة محدودة 🔥</p>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Content -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="content">
+                                <div class="discount-circle">
+                                    <span class="discount-percentage">35%</span>
+                                    <span class="discount-off">خصم</span>
+                                </div>
+                                <h2 class="offer-title">عرض استثنائي لا يُفوت!</h2>
+                                <p class="offer-subtitle">وفر الآن على جميع منتجاتنا المميزة</p>
+                                <p class="offer-text">
+                                    استمتع بخصم هائل يصل إلى 35% على مجموعة واسعة من منتجاتنا عالية الجودة. هذا العرض متاح لفترة محدودة فقط، لذا أسرع واحصل على ما تحتاجه بأفضل الأسعار. لا تدع هذه الفرصة الذهبية تفوتك!
+                                </p>
+                                <a href="#" class="cta-button">🛒 احصل على العرض الآن</a>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Urgency Section -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="urgency">
+                                <h3 class="urgency-title">⏰ العرض ينتهي قريباً!</h3>
+                                <div class="countdown">
+                                    <div class="countdown-item">
+                                        <span class="countdown-number">02</span>
+                                        <span class="countdown-label">أيام</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-number">14</span>
+                                        <span class="countdown-label">ساعات</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-number">35</span>
+                                        <span class="countdown-label">دقائق</span>
+                                    </div>
+                                </div>
+                                <p style="color: #92400e; font-weight: 500; margin: 0;">أسرع قبل انتهاء العرض!</p>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Footer -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td class="footer">
+                                <p><strong>© 2024 شركتنا</strong> - جميع الحقوق محفوظة</p>
+                                <p>هذا العرض ساري حتى نفاد الكمية أو انتهاء المدة المحددة</p>
+                                <p>إذا كنت لا ترغب في تلقي هذه الرسائل، <a href="#">يمكنك إلغاء الاشتراك من هنا</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
